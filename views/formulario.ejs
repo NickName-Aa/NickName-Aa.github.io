@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/base.css">
+    <link rel="stylesheet" href="/resources/css/formulario.css">
+    <title>Formulario</title>
+</head>
+
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="/home">    
+                <img src="/resources/img/logo.png" alt="Logo UCSC">
+            </a>
+            <a href="/logout" >Cerrar Sesión</a>
+        </div>
+    </header>
+
+    <div class="page-content form-page">
+
+    <form class="justificativo" action="/enviar-justificativo" method="post" enctype="multipart/form-data">
+    <fieldset>
+        <legend>Datos del estudiante</legend>
+
+        <label>Nombre estudiante:</label>
+        <input type="text" name="nom" value="<%= alumno.nombre_completo %>" readonly>
+        <label>Rut:</label>
+        <input type="text" name="rut" value="<%= alumno.rut %>" readonly>
+        <label>Correo institucional:</label>
+        <input type="email" name="ema" value="<%= alumno.correo %>" readonly>
+        <label>Telefono:</label>
+        <input type="tel" name="tel" value="<%= alumno.telefono %>" readonly>
+        <label>Carrera:</label>
+        <input type="text" name="car" value="<%= alumno.nombre_carrera %>" readonly>
+        <label>Semestre:</label>
+        <input type="text" name="sem" value="" readonly>
+        <label>Jornada:</label>
+        <input type="text" name="jornada" value="<%= alumno.jornada %>" readonly>
+
+
+    </fieldset>
+    <fieldset>
+        <legend>Datos Académicos</legend>
+
+        <label>Fecha de Evaluación a Justificar:</label>
+        <input type="date" name="fecha_evaluacion" required>
+        <label>Asignatura:</label>
+            <select id="asignatura" name="id_asignatura" required>
+                <option value="">Seleccione asignatura</option>
+                <% asignaturas.forEach(asig => { %>
+                <option value="<%= asig.id_asignatura %>">
+                <%= asig.nombre %>
+                </option>
+                <% }) %>
+            </select>
+        <label>Sección:</label>
+            <select name="id_seccion" id="seccion" required>
+                <option value="">Seleccione sección</option>
+            </select>
+        <label>Docente:</label>
+            <select name="rut_docente" id="docente" required>
+                <option value="">Seleccione docente</option>
+            </select>
+    </fieldset>
+    <fieldset>
+    <legend>Motivo de la Justificación</legend>
+        <label>Motivo:</label>
+            <input type="text" name="motivo" required>
+    </fieldset>
+    
+    <fieldset>
+  <legend>Certificado</legend>
+
+  <div class="campo-certificado">
+    <label>Tipo de certificado</label>
+    <select name="tipo_certificado" required>
+        <option value="">Seleccione tipo</option>
+        <option value="MEDICO">Médico</option>
+        <option value="LABORAL">Laboral</option>
+        <option value="OTRO">Otro</option>
+    </select>
+  </div>
+
+  <div class="campo-certificado">
+    <label>Adjuntar certificado</label>
+    <input type="file" name="certificado" accept="application/pdf" required>
+  </div>
+
+</fieldset>
+
+
+    <input type="submit" value="Enviar">
+    </form>
+    </div>
+</body>
+<script>
+const selectAsignatura = document.getElementById("asignatura");
+const selectSeccion = document.getElementById("seccion");
+const selectDocente = document.getElementById("docente");
+
+/* ============================
+   CARGAR SECCIONES POR ASIGNATURA
+============================ */
+selectAsignatura.addEventListener("change", async () => {
+    const idAsignatura = selectAsignatura.value;
+
+    // Limpiar secciones y docentes
+    selectSeccion.innerHTML = '<option value="">Seleccione sección</option>';
+    selectDocente.innerHTML = '<option value="">Seleccione docente</option>';
+
+    if (!idAsignatura) return;
+
+    try {
+        const response = await fetch(`/api/secciones/${idAsignatura}`);
+        const secciones = await response.json();
+
+        secciones.forEach(sec => {
+            const option = document.createElement("option");
+            option.value = sec.id_seccion;
+            option.textContent = sec.codigo_seccion;
+            selectSeccion.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error cargando secciones", error);
+    }
+});
+
+/* ============================
+   CARGAR DOCENTES POR SECCIÓN
+============================ */
+selectSeccion.addEventListener("change", async () => {
+    const idSeccion = selectSeccion.value;
+
+    // Limpiar docentes
+    selectDocente.innerHTML = '<option value="">Seleccione docente</option>';
+
+    if (!idSeccion) return;
+
+    try {
+        const response = await fetch(`/api/docentes/${idSeccion}`);
+        const docentes = await response.json();
+
+        docentes.forEach(doc => {
+            const option = document.createElement("option");
+            option.value = doc.rut;
+            option.textContent = doc.nombre;
+            selectDocente.appendChild(option);
+        });
+    } catch (error) {
+        console.error("Error cargando docentes", error);
+    }
+});
+</script>
+
+
+
+</html>

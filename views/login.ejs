@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/base.css">
+    <link rel="stylesheet" href="/resources/css/login.css">
+    <title>Login</title>
+</head>
+<body>
+    <main>
+        <img src="/resources/img/logo.png" alt="Logo" style="width: 150px;" class="mb-4 mx-auto">
+        <form  class="login-form" action="/auth" method="post">
+            <label for="user">RUT:</label>
+            <input type="text" name="user" id="user" maxlength="9" placeholder="RUT: 12123123">
+            <label for="pass">Contraseña:</label>
+            <input type="password" name="pass" id="pass" maxlength="30" minlength="5" placeholder="Contraseña">
+            <input type="submit" class="btn-login" value="Iniciar">
+            <a href="/olvidoContrasenha">¿Olvidaste tu contraseña?</a>
+
+        </form>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <% if (typeof alert != "undefined"){%>
+        <script>
+            Swal.fire({
+                title:"<%=alertTitle%>",
+                text:"<%=alertMessage%>",
+                icon:"<%=alertIcon%>",
+                showConfirmButton:<%=showConfirmButton%> ,
+                timer:<%=timer%>
+            }).then(()=>{
+                window.location= "<%=ruta%>"
+            })
+        </script>
+    <%} %>
+
+</body>
+</html>

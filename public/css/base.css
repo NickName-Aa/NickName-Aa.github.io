@@ -1,0 +1,148 @@
+/* ==================================================
+   BASE – VARIABLES Y RESET (IDENTIDAD UCSC)
+================================================== */
+
+:root {
+    /* Marca */
+    --color-primario: #d12421;   /* rojo pantone */
+    --color-primario-hover: #ff0400;
+
+    /* Estados */
+    --color-exito: #198754;
+    --color-advertencia: #ffc107;
+    --color-error: #dc3545;
+
+    /* Fondos */
+    --color-fondo: #f4f4f4;
+    --color-fondo-suave: #f8f9fa;
+    --color-card: #ffffff;
+
+    /* Texto */
+    --color-texto: #646567;
+    --color-texto-fuerte: #343a40;
+    --color-texto-secundario: #777777;
+
+    /* Bordes */
+    --color-borde: #dee2e6;
+    --color-borde-suave: #e0e0e0;
+
+    /* UI */
+    --radio: 8px;
+}
+
+/* Reset */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+/* ==================================================
+   TIPOGRAFÍA Y BODY
+================================================== */
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-weight: 700;
+    color: var(--color-texto-fuerte);
+}
+
+/* ==================================================
+   LAYOUT GENERAL
+================================================== */
+
+.page-content {
+    min-height: calc(100vh - 80px);
+    padding: 30px;
+    overflow-y: auto;
+}
+
+/* ==================================================
+   HEADER GLOBAL
+================================================== */
+
+.header {
+    height: 80px;
+    width: 100%;
+    background: var(--color-card);
+
+    display: flex;
+    align-items: center;
+
+    padding: 0 40px;
+    border-bottom: 1px solid var(--color-borde);
+
+}
+
+.header .logo {
+    width: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.header .logo img {
+    height: 45px;
+}
+
+.header .logo a[href="/logout"] {
+    margin-left: auto;
+
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    color: var(--color-error);
+    text-decoration: none;
+}
+
+.header .logo a[href="/logout"]:hover {
+    opacity: 0.85;
+}
+
+
+
+/* ==================================================
+   BOTONES BASE
+================================================== */
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+}
+
+.btn-primary {
+    background: var(--color-primario);
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background: var(--color-primario-hover);
+}
+
+.btn-danger {
+    background: var(--color-error);
+    color: #fff;
+}
+
+/* ==================================================
+   FOOTER (FUTURO)
+================================================== */
+
+.footer {
+    margin-top: 40px;
+    padding: 15px;
+    text-align: center;
+    font-size: 0.75rem;
+    color: var(--color-texto-secundario);
+    border-top: 1px solid var(--color-borde);
+}

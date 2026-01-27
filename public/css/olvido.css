@@ -1,0 +1,115 @@
+/* ==================================================
+   OLVIDO CONTRASEÑA
+================================================== */
+
+html {
+    overflow-y: scroll;
+}
+
+body {
+    min-height: 100vh;
+    background-color: var(--color-fondo);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ==================================================
+   CONTENEDOR FORMULARIO
+================================================== */
+
+form {
+    background: var(--color-card);
+    width: 90%;
+    max-width: 420px;
+
+    padding: 3rem 2.5rem;
+
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+
+    display: flex;
+    flex-direction: column;
+}
+
+/* ==================================================
+   TÍTULO
+================================================== */
+
+form h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    color: var(--color-texto-fuerte);
+}
+
+/* ==================================================
+   LABEL
+================================================== */
+
+form label {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+    color: var(--color-texto-secundario);
+}
+
+/* ==================================================
+   INPUT
+================================================== */
+
+form input[type="text"] {
+    padding: 10px 12px;
+    margin-bottom: 20px;
+
+    font-size: 0.75rem;
+    font-family: 'Montserrat', sans-serif;
+
+    border: 1px solid var(--color-borde);
+    border-radius: 6px;
+}
+
+form input:focus {
+    outline: none;
+    border-color: var(--color-primario);
+}
+
+/* ==================================================
+   BOTÓN
+================================================== */
+
+form button {
+    margin-top: 10px;
+
+    padding: 12px 0;
+    width: 100%;
+
+    background-color: var(--color-primario);
+    color: #fff;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+
+    cursor: pointer;
+}
+
+form button:hover {
+    background-color: var(--color-primario-hover);
+}
+
+/* ==================================================
+   TEXTO INFORMATIVO
+================================================== */
+
+form p {
+    margin-top: 18px;
+    font-size: 0.65rem;
+    text-align: center;
+    color: var(--color-texto-secundario);
+}

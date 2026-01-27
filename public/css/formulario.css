@@ -1,0 +1,170 @@
+/* ==================================================
+   FORMULARIO JUSTIFICATIVO
+================================================== */
+
+.form-page {
+    min-height: calc(100vh - 80px);
+    overflow-y: auto;
+    padding-bottom: 50px;
+}
+
+/* ==================================================
+   GRID PRINCIPAL
+================================================== */
+
+.justificativo {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    grid-template-areas:
+        "alumno academico"
+        "alumno motivo"
+        "certificado certificado"
+        "boton boton";
+    gap: 25px;
+
+    width: 95%;
+    max-width: 1500px;
+    margin: 30px auto;
+}
+
+/* ==================================================
+   FIELDSETS
+================================================== */
+
+.justificativo fieldset {
+    background: #fff;
+    border: 1px solid var(--color-borde);
+    padding: 20px 22px;
+    border-radius: 6px;
+}
+
+.justificativo fieldset:nth-of-type(1) { grid-area: alumno; }
+.justificativo fieldset:nth-of-type(2) { grid-area: academico; }
+.justificativo fieldset:nth-of-type(3) { grid-area: motivo; }
+.justificativo fieldset:nth-of-type(4) { grid-area: certificado; }
+
+/* ==================================================
+   CERTIFICADO – LAYOUT HORIZONTAL
+================================================== */
+
+.justificativo fieldset:nth-of-type(4) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+/* Cada par label + input en columna */
+.justificativo fieldset:nth-of-type(4) label {
+    margin-top: 0;
+}
+
+/* Forzar que label + input se comporten como bloque */
+.justificativo fieldset:nth-of-type(4) label,
+.justificativo fieldset:nth-of-type(4) select,
+.justificativo fieldset:nth-of-type(4) input[type="file"] {
+    width: 100%;
+}
+
+/* ==================================================
+   LEGEND
+================================================== */
+
+.justificativo legend {
+    font-weight: 700;
+    font-size: 0.75rem;
+    padding: 0 8px;
+    color: var(--color-primario);
+    text-transform: uppercase;
+}
+
+/* ==================================================
+   LABELS
+================================================== */
+
+.justificativo label {
+    display: block;
+    margin-top: 12px;
+    font-weight: 700;
+    font-size: 0.65rem;
+    color: #555;
+}
+
+/* ==================================================
+   INPUTS & SELECTS
+================================================== */
+
+.justificativo input,
+.justificativo select {
+    width: 100%;
+    padding: 8px 10px;
+    margin-top: 4px;
+    border: 1px solid var(--color-borde);
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.justificativo input:focus,
+.justificativo select:focus {
+    outline: none;
+    border-color: var(--color-primario);
+}
+
+/* READONLY */
+.justificativo input[readonly] {
+    background-color: #f5f5f5;
+    color: #666;
+    cursor: default;
+}
+
+/* FILE */
+.justificativo input[type="file"] {
+    font-size: 0.7rem;
+    padding: 6px;
+}
+
+/* ==================================================
+   BOTÓN SUBMIT
+================================================== */
+
+.justificativo input[type="submit"] {
+    grid-area: boton;
+    justify-self: center;
+
+    padding: 12px 50px;
+    font-size: 0.7rem;
+    font-weight: 700;
+
+    background-color: var(--color-primario);
+    color: #fff;
+
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.justificativo input[type="submit"]:hover {
+    opacity: 0.9;
+}
+
+/* ==================================================
+   RESPONSIVE
+================================================== */
+
+@media (max-width: 900px) {
+    .justificativo {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "alumno"
+            "academico"
+            "motivo"
+            "certificado"
+            "boton";
+    }
+}
+@media (max-width: 900px) {
+    .justificativo fieldset:nth-of-type(4) {
+        grid-template-columns: 1fr;
+    }
+}
+

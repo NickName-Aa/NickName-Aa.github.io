@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/resources/css/base.css">
+    <link rel="stylesheet" href="/resources/css/olvido.css">
+    <title>OlvidoContraseña</title>
+</head>
+
+<body>
+    <form action="/olvidoContrasenha" method="POST">
+        <h2>Recuperar contraseña</h2>
+        <% if (success) { %>
+            <p class="success"><%= success %></p>
+        <% } %>
+
+        <% if (error) { %>
+            <p class="error"><%= error %></p>
+        <% } %>
+
+        <label>RUT</label>
+        <input type="text" name="rut" placeholder="Ej: 12345678" required>
+    
+        <button type="submit">Enviar enlace</button>
+    
+        <p>Te enviaremos un correo con un enlace para cambiar tu contraseña.</p>
+    </form>
+</body>
+
+</html>
